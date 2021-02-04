@@ -49,6 +49,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 ```
 
+Please read [configuration.md](configuration.md) to see additional settings that can help during your spark session.
 
 ## Rules of thumb for spark
 ## Use DataFrames (ignore RDDs)
@@ -79,8 +80,6 @@ The [Apache Parquet](https://databricks.com/glossary/what-is-parquet) format is 
 ## Caching data in memory 
 
 In spark, the DataFrames interim computations are not stored in memory. The DataFrames are only evaluated when the action is called. If we have expensive transformations, then using `cache()` (or `persist()` for finer control) can speed up your EDA.
-
-
 
 
 [^1]: https://sparkbyexamples.com/spark/spark-performance-tuning/
