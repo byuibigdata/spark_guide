@@ -18,7 +18,7 @@ https://luminousmen.com/post/spark-partitions
 
 ## database configuration
 
-When you read the the documentation for [SaveAsTable](https://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=saveastable#pyspark.sql.DataFrameWriter.saveAsTable) you will see that it is the option to permanently save your table into your database instead of creating a temporary database that only last for the spark session using [createTempView](https://spark.apache.org/docs/2.1.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame.createOrReplaceTempView). Apache Spark even has a section of their programming guide that explains [persistent tables](https://spark.apache.org/docs/2.3.1/sql-programming-guide.html#saving-to-persistent-tables) and provides the relevant pyspark code
+When you read the the documentation for [SaveAsTable](https://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=saveastable#pyspark.sql.DataFrameWriter.saveAsTable) you will see that it is the option to permanently save your table into your database instead of creating a temporary database that only last for the spark session using [createTempView](https://spark.apache.org/docs/2.1.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame.createOrReplaceTempView). Apache Spark even has a section of their programming guide that explains [persistent tables](https://spark.apache.org/docs/2.3.1/sql-programming-guide.html#saving-to-persistent-tables) and provides the relevant pyspark code.
 
 ```python
 df.write.saveAsTable("people_bucketed")
