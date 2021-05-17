@@ -27,6 +27,11 @@ df = spark.createDataFrame(pdf)
 |         3 | e         |      65 |
 |         3 | f         |      98 |
 
+Using the above `df` we can create a temporary view in Spark;
+
+```python
+df.createOrReplaceTempView("df")
+```
 
 ## GROUP BY
 
@@ -121,15 +126,9 @@ df.withColumn("rank", F.rank().over(window_order)) \
 
 #### SQL
 
-Using the above `df` we can create a temporary view;
-
-```python
-df.createOrReplaceTempView("df")
-```
-
 Then we can use the following SQL command.
 
-``sql
+```sql
 SELECT Section, Student, Score, 
   RANK(Score) OVER (PARTITION BY Section ORDER BY Score) as rank,
   MIN(Score) OVER (PARTITION BY SECTION) as min
