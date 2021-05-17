@@ -1,37 +1,14 @@
 # Completing aggregated calculations using Spark
 
-Generally, we will want to perform calculations by some grouping within our data.  For example, we may want to know the number of employees in each business unit or the amount of sales by month. 
+Eventually, we will want to perform calculations by some grouping within our data.  For example, we may want to know the number of employees in each business unit or sales by month. 
 
 Sometimes, we want a new table based on the grouping variable.  Other times, we will want to keep our observational unit of the original table but add additional columns with the summary variable appended. In SQL, we will differentiate the two calculations by the `GROUP BY` method and the `WINDOW` method.
 
 ![](images/groupby-window.png)
 
-## GROUP BY
-
-When using 'GROUP BY' functions or methods in the varied languages of data science the observational unit (row) of the resulting table is defined by the levels of the variable used in the 'GROUP BY' argument. We move from many rows to fewer rows.  
-
-![](images/groupby.png)
-
-### Language specific help files
-
-- [SQL: GROUP BY](https://www.w3schools.com/sql/sql_groupby.asp)
-- [dplyr: group_by()](https://dplyr.tidyverse.org/reference/group_by.html)
-- [Pandas: df.groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
-- [Pyspark: df.groupBy()](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.DataFrame.groupBy.html)
-
-The `GROUP BY` methods of each language must be combined with their respective calculation process.
-
-- [SQL: calcluated fields](https://joequery.me/notes/sql-calculated-fields/)
-- [dplyr: summarize()](https://dplyr.tidyverse.org/reference/mutate.html) and read their [window example](https://dplyr.tidyverse.org/articles/window-functions.html)
-- [Pandas: .agg()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.agg.html)
-- [Pyspark: .agg()](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.GroupedData.agg.html)
-
-
-### Examples
-
 Here are example calculations using Pyspark and SQL.
 
-We have our default `DataFrame`
+We have our default `DataFrame` for the below examples.
 
 ```python
 import pandas as pd
@@ -49,6 +26,28 @@ df = spark.createDataFrame(pdf)
 |         3 | d         |      95 |
 |         3 | e         |      65 |
 |         3 | f         |      98 |
+
+
+## GROUP BY
+
+When using 'GROUP BY' functions or methods in the varied languages of data science, the resulting table's observational unit (row) is defined by the levels of the variable used in the 'GROUP BY' argument. We move from many rows to fewer rows, as shown in the two leftmost tables of the above image.  
+
+### Language-specific help files
+
+- [SQL: GROUP BY](https://www.w3schools.com/sql/sql_groupby.asp)
+- [dplyr: group_by()](https://dplyr.tidyverse.org/reference/group_by.html)
+- [Pandas: df.groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
+- [Pyspark: df.groupBy()](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.DataFrame.groupBy.html)
+
+The `GROUP BY` methods of each language are combined with their respective calculation process.
+
+- [SQL: calcluated fields](https://joequery.me/notes/sql-calculated-fields/)
+- [dplyr: summarize()](https://dplyr.tidyverse.org/reference/mutate.html) and read their [window example](https://dplyr.tidyverse.org/articles/window-functions.html)
+- [Pandas: .agg()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.agg.html)
+- [Pyspark: .agg()](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.GroupedData.agg.html)
+
+
+### Examples
 
 The following two examples result in an average and standard deviation for each section.
 
@@ -70,7 +69,12 @@ df.groupBy('Section').agg(
 #### SQL
 
 ```sql
-
+SELECT
+  Section,
+  MEAN(Score),
+  STDDEV_SAMP(Score)
+FROM df
+GROUP BY Section
 ```
 
 
@@ -78,7 +82,7 @@ df.groupBy('Section').agg(
 
 > At its core, a window function calculates a return value for every input row of a table based on a group of rows, called the Frame. Every input row can have a unique frame associated with it. This characteristic of window functions makes them more powerful than other functions and allows users to express various data processing tasks that are hard (if not impossible) to be expressed without window functions in a concise way. Now, let’s take a look at two examples. [ref](https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html)
 
-### Language specific help files
+### Language-specific help files
 
 - [SQL: OVER(PARTITION BY <column>)](https://spark.apache.org/docs/latest/sql-ref-syntax-qry-select-window.html) or [this reference](https://mode.com/sql-tutorial/sql-window-functions/)
 - [dplyr: mutate()](https://dplyr.tidyverse.org/articles/window-functions.html)
@@ -117,7 +121,7 @@ df.withColumn("rank", F.rank().over(window_order)) \
 
 #### SQL
 
-Using the above `df` we can create a temporary view
+Using the above `df` we can create a temporary view;
 
 ```python
 df.createOrReplaceTempView("df")
