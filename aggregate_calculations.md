@@ -134,7 +134,36 @@ SELECT Section, Student, Score,
   MIN(Score) OVER (PARTITION BY SECTION) as min
 FROM df
 ```
+### Stack Overflow Answer
+  
+I especially like [TMichel's response that has the highest vote](https://stackoverflow.com/questions/46580253/collect-list-by-preserving-order-based-on-another-variable).  I include his full description below.
+  
+`Window` examples provided by users often don't really explain what is going on so let me dissect it for you.
 
+As you know, using `collect_list()` together with `groupBy()` will result in an unordered list of values. This is because depending on how your data is partitioned, Spark will append values to your list as soon as it finds a row in the group. The order then depends on how Spark plans your aggregation over the executors.
+
+A `Window` function allows you to control that situation, grouping rows by a certain value so you can perform an operation `over` each of the resultant groups:
+
+```python
+w = Window.partitionBy('id').orderBy('date')
+```
+  
+- `partitionBy()` - you want groups/partitions of rows with the same _id_
+- `orderBy()` - you want each row in the group to be sorted by _date_
+
+Once you have defined the scope of your `Window` - "rows with the same id, sorted by date" -, you can use it to perform an operation over it, in this case, a `collect_list`:
+
+```python
+F.collect_list('value').over(w)
+```
+  
+At this point you created a new column `sorted_list` with an ordered list of values, sorted by date, but you still have duplicated rows per _id_. To trim out the duplicated rows you want to `groupBy()` _id_ and keep the `max()` value in for each group:
+
+```python
+.groupBy('id')\
+.agg(F.max('sorted_list').alias('sorted_list'))
+```
+  
 ## References
 
 - https://stackoverflow.com/questions/53647644/how-orderby-affects-window-partitionby-in-pyspark-dataframe
