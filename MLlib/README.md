@@ -1,8 +1,8 @@
-This folder has examples built using databricks and notes on unique predictive models.
+This folder has examples built using Databricks and notes on unique predictive models.
 
 ## Time series data
 
-Most analysts will make mistakes in evaluating and fitting time series models if they don't have previous experience in this space. I recommend that you read the below references to understand some of the issues. If you would like to leverage your standard tools for machine learning you can use a [sliding window or forward chaining](https://towardsdatascience.com/time-series-machine-learning-regression-framework-9ea33929009a). However, we will still need to be careful with our validation process.
+Most analysts will make mistakes in evaluating and fitting time series models if they don't have previous experience in this space. I recommend that you read the below references to understand some of the issues. If you would like to leverage your standard tools for machine learning, you can use a [sliding window or forward chaining](https://towardsdatascience.com/time-series-machine-learning-regression-framework-9ea33929009a). However, we will still need to be careful with our validation process.
 
 Jason Brownlee [provides some clear examples for our data formatting](https://machinelearningmastery.com/time-series-forecasting-supervised-learning/#:~:text=The%20use%20of%20prior%20time,or%20size%20of%20the%20lag.) that may help. I especially like the following image to visualize the windowing concept.
 
