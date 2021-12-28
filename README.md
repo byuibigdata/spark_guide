@@ -69,4 +69,4 @@ In Spark, the DataFrames interim computations are not stored in memory. The Data
 
 #### Spark Sessions need your attention
 
-We will want to set many configurations as we leverage Spark for our data science projects.  Systems like DataBricks have optimized many of these, but we will still need to understand how to configure our Spark Sessions.  __Please review the [configuration.md](configuration.md) to see the configurations we need for the [all-spark-notebook](https://hub.docker.com/r/jupyter/all-spark-notebook) we built using [docker_guide](https://github.com/BYUI451/docker_guide).
+We will want to set many configurations as we leverage Spark for our data science projects.  Systems like DataBricks have optimized many of these, but we will still need to understand how to configure our Spark Sessions.  __Please review the [configuration.md](configuration.md) to see the configurations we need for the [all-spark-notebook](https://hub.docker.com/r/jupyter/all-spark-notebook) we built using [docker_guide](https://github.com/BYUI451/docker_guide).__
