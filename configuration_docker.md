@@ -1,20 +1,44 @@
-# Notes on spark configuration
+# Notes on spark configuration for [all-spark-notebook](https://hub.docker.com/r/jupyter/all-spark-notebook)
 
-## Memory management
+### Spark Sessions need your attention
 
-- https://www.pgs-soft.com/blog/spark-memory-management-part-1-push-it-to-the-limits/#:~:text=Off%2Dheap%20refers%20to%20objects,processed%20by%20the%20garbage%20collector).
-- https://www.tutorialdocs.com/article/spark-memory-management.html
-- https://g1thubhub.github.io/spark-memory.html
-- https://stackoverflow.com/questions/43330902/spark-off-heap-memory-config-and-tungsten
-- https://www.programmersought.com/article/78025859942/
+We will want to set many configurations as we leverage Spark for our data science projects.  Systems like DataBricks have optimized many of these, but we will still need to understand how to configure our Spark Sessions.  
 
-### WSL 2
+_You can review the [configuration.md](configuration.md) to see the configurations we can use with the [all-spark-notebook](https://hub.docker.com/r/jupyter/all-spark-notebook) built using [docker_guide](https://github.com/BYUI451/docker_guide)._
 
-https://stackoverflow.com/questions/62405765/memory-allocation-to-docker-containers-after-moving-to-wsl-2-in-windows
 
-## Partition management
+### Create a session with `all_spark_notebook` docker.
 
-https://luminousmen.com/post/spark-partitions
+_Don't use this with DataBricks._
+
+With our methods imported we can configure our session.  These configurations are built to work with the spark configuration from [docker_guide](https://github.com/BYUI451/docker_guide). We will generally use the default configuration values in our work.  You can review all the spark configuration options [here](https://spark.apache.org/docs/latest/configuration.html).
+
+- We will want make our spark user interface to a known port that we have opened. 
+- As we will be using Postgress, we will need to provide the respective spark.jar that can be found in [docker_guide](https://github.com/BYUI451/docker_guide)
+- The batch size of 10000 is the default.  Lowering this value can fix out-of-memory problems and larger values can boost memory utilization.
+- We will want to specify our warehouse location so it doesn't default to the working directory of the Jupyter notebook.
+- Finally, we can specify the driver memory available.  
+
+```python
+warehouse_location = os.path.abspath('../../../data/spark-warehouse') # make sure your path is set up correctly.
+# Create the session
+conf = (SparkConf()
+    .set("spark.ui.port", "4041")
+    .set('spark.jars', '/home/jovyan/scratch/postgresql-42.2.18.jar')
+    .set("spark.sql.inMemoryColumnarStorage.compressed", True) # the default has changed so lets just make sure.
+    .set("spark.sql.inMemoryColumnarStorage.batchSize",10000) # default
+    .set("spark.sql.warehouse.dir", warehouse_location) # set above
+    .set("spark.driver.memory", "7g") # lower or increase depending on your system. Local mode helps with executions as well.  
+    )
+
+# Create the Session (used to be context)
+# you can move the number up or down depending on your memory and processors "local[*]" will use all.
+spark = SparkSession.builder \
+    .master("local[3]") \
+    .appName('test') \
+    .config(conf=conf) \
+    .getOrCreate()
+```
 
 ## database configuration
 
@@ -81,7 +105,26 @@ spark = SparkSession.builder \
     .getOrCreate()
 ```
 
-__references__
+## References
+
+### Memory management
+
+- https://www.pgs-soft.com/blog/spark-memory-management-part-1-push-it-to-the-limits/#:~:text=Off%2Dheap%20refers%20to%20objects,processed%20by%20the%20garbage%20collector).
+- https://www.tutorialdocs.com/article/spark-memory-management.html
+- https://g1thubhub.github.io/spark-memory.html
+- https://stackoverflow.com/questions/43330902/spark-off-heap-memory-config-and-tungsten
+- https://www.programmersought.com/article/78025859942/
+
+### WSL 2
+
+https://stackoverflow.com/questions/62405765/memory-allocation-to-docker-containers-after-moving-to-wsl-2-in-windows
+
+### Partition management
+
+https://luminousmen.com/post/spark-partitions
+
+
+### Other
 
 - https://spark.apache.org/docs/2.3.1/sql-programming-guide.html#saving-to-persistent-tables
 - https://stackoverflow.com/questions/31980584/how-to-connect-spark-sql-to-remote-hive-metastore-via-thrift-protocol-with-no

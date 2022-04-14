@@ -1,6 +1,5 @@
-This folder has examples built using Databricks and notes on unique predictive models.
 
-## Time series data
+## Time series data and ML
 
 Most analysts will make mistakes in evaluating and fitting time series models if they don't have previous experience in this space. I recommend that you read the below references to understand some of the issues. If you would like to leverage your standard tools for machine learning, you can use a [sliding window or forward chaining](https://towardsdatascience.com/time-series-machine-learning-regression-framework-9ea33929009a). However, we will still need to be careful with our validation process.
 
@@ -9,8 +8,6 @@ Jason Brownlee [provides some clear examples for our data formatting](https://ma
 ![](window.png)
 
 ## References
-
-### Time series
 
 - [Fine-Grained Time Series Forecasting at Scale With Facebook Prophet and Apache Spark: Updated for Spark 3](https://databricks.com/blog/2021/04/06/fine-grained-time-series-forecasting-at-scale-with-facebook-prophet-and-apache-spark-updated-for-spark-3.html)
 - [How (not) to use Machine Learning for time series forecasting: Avoiding the pitfalls](https://towardsdatascience.com/how-not-to-use-machine-learning-for-time-series-forecasting-avoiding-the-pitfalls-19f9d7adf424)
