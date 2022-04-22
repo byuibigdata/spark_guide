@@ -9,3 +9,4 @@ _This guide contains the information on Spark that has been valuable to previous
 - [Using Spark in Docker](configuration_docker.md)
 - [DataBricks Examples](databricks/readme.md)
 - [Machine Learning Notes](machine_learning/README.md)
+- [Background on Parquet Files](https://github.com/hathawayj/medium-data)
