@@ -28,7 +28,7 @@ Read more about the limitations of Community Edition at [this FAQ](https://datab
 
 1. Create a [community account on Databricks](https://databricks.com/try-databricks)
 2. Login into the [Databricks community edition portal](https://community.cloud.databricks.com/login.html)
-3. Click the compute icon on the left (![](img/compute_icon.png))
+3. Click the compute icon on the left (![](https://github.com/byuibigdata/project_safegraph/blob/main/img/compute_icon.png))
 4. Name your cluster
 5. Create your cluster and then navigate to the libraries tab to install our needed Python packages - `gql`
 
