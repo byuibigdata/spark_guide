@@ -24,6 +24,16 @@ The [community edition](https://community.cloud.databricks.com/login.html) provi
 
 Read more about the limitations of Community Edition at [this FAQ](https://databricks.com/product/faq/community-edition).
 
+### Community Edition Setup
+
+1. Create a [community account on Databricks](https://databricks.com/try-databricks)
+2. Login into the [Databricks community edition portal](https://community.cloud.databricks.com/login.html)
+3. Click the compute icon on the left (![](https://github.com/byuibigdata/project_safegraph/blob/main/img/compute_icon.png))
+4. Name your cluster
+5. Create your cluster and then navigate to the libraries tab to install our needed Python packages - `gql`
+
+You can see a few additional steps to store your safegraph API key to the _Environment variables_ section. - `SAFEGRAPH_KEY=dkfdkjdkfa83939dkfjf` when you are naming your cluster with the [Databricks guide in the project_safegraph](https://github.com/byuibigdata/project_safegraph/blob/main/databricks_community.md).
+
 ## What is the difference between the Databricks Community Edition and the full Databricks Platform?
 
 > With the Databricks Community Edition, the users will have access to 15GB clusters, a cluster manager and the notebook environment to prototype simple applications, and JDBC / ODBC integrations for BI analysis. The Databricks Community Edition access is not time-limited and users will not incur AWS costs for their cluster usage.
