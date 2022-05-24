@@ -4,6 +4,7 @@ _This guide contains the information on Spark that has been valuable to previous
 
 - [Overview of Spark](spark_overview.md)
 - [Overview of DataBricks](databricks/readme.md)
+- [On Repartioning](repartioning.md)
 - [Pyspark notes](pyspark.md): It is a work in progress
     - [Aggregate Calculations](aggregate_calculations.md)
 - [Using Spark in Docker](configuration_docker.md)
