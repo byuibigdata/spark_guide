@@ -30,7 +30,7 @@ Read more about the limitations of Community Edition at [this FAQ](https://datab
 2. Login into the [Databricks community edition portal](https://community.cloud.databricks.com/login.html)
 3. Click the compute icon on the left (![](https://github.com/byuibigdata/project_safegraph/blob/main/img/compute_icon.png))
 4. Name your cluster
-5. Create your cluster and then navigate to the libraries tab to install our needed Python packages - `gql`
+5. Create your cluster and then navigate to the libraries tab to install our needed Python packages (for example `gql`, `plotnine`, `altair`). Pandas is already installed.
 
 
 ## What is the difference between the Databricks Community Edition and the full Databricks Platform?
