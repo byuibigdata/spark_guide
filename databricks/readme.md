@@ -32,7 +32,6 @@ Read more about the limitations of Community Edition at [this FAQ](https://datab
 4. Name your cluster
 5. Create your cluster and then navigate to the libraries tab to install our needed Python packages - `gql`
 
-You can see a few additional steps to store your safegraph API key to the _Environment variables_ section. - `SAFEGRAPH_KEY=dkfdkjdkfa83939dkfjf` when you are naming your cluster with the [Databricks guide in the project_safegraph](https://github.com/byuibigdata/project_safegraph/blob/main/databricks_community.md).
 
 ## What is the difference between the Databricks Community Edition and the full Databricks Platform?
 
