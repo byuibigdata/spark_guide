@@ -42,14 +42,14 @@ When using 'GROUP BY' functions or methods in the varied languages of data scien
 - [SQL: GROUP BY](https://www.w3schools.com/sql/sql_groupby.asp)
 - [dplyr: group_by()](https://dplyr.tidyverse.org/reference/group_by.html)
 - [Pandas: df.groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
-- [Pyspark: df.groupBy()](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.DataFrame.groupBy.html)
+- [Pyspark: df.groupBy()](https://spark.apache.org/docs/3.1.3/api/python/reference/api/pyspark.sql.DataFrame.groupBy.html)
 
 The `GROUP BY` methods of each language are combined with their respective calculation process.
 
 - [SQL: calcluated fields](https://joequery.me/notes/sql-calculated-fields/)
 - [dplyr: summarize()](https://dplyr.tidyverse.org/reference/mutate.html) and read their [window example](https://dplyr.tidyverse.org/articles/window-functions.html)
 - [Pandas: .agg()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.agg.html)
-- [Pyspark: .agg()](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.GroupedData.agg.html)
+- [Pyspark: .agg()](https://spark.apache.org/docs/3.1.3/api/python/reference/api/pyspark.sql.GroupedData.agg.html)
 
 
 ### Examples
@@ -92,7 +92,7 @@ GROUP BY Section
 - [SQL: OVER(PARTITION BY <column>)](https://spark.apache.org/docs/latest/sql-ref-syntax-qry-select-window.html) or [this reference](https://mode.com/sql-tutorial/sql-window-functions/)
 - [dplyr: mutate()](https://dplyr.tidyverse.org/articles/window-functions.html)
 - [Pandas: transform()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transform.html)
-- [Pyspark: .over() with pyspark.sql.Window()](https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.Column.over.html) and [this Databricks guide](https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html)
+- [Pyspark: .over() with pyspark.sql.Window()](https://spark.apache.org/docs/3.1.3/api/python/reference/api/pyspark.sql.Column.over.html) and [this Databricks guide](https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html)
 
 ### Examples
 
